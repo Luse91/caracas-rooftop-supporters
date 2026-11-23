@@ -239,7 +239,8 @@
       ol.append(li);
     });
     $("vacio").hidden = nombres.length > 0;
-    $("cuenta").textContent = nombres.length === 1 ? "1 pana" : `${nombres.length} panas`;
+    $("cuenta").textContent = (nombres.length === 1 ? "1 pana" : `${nombres.length} panas`)
+      + (nombres.length > 38 ? " · la placa solo admite 38: avísale a Claude para ampliarla" : "");
     const cambios = hayCambios();
     $("pendiente").hidden = !cambios;
     $("btnGuardar").disabled = !cambios;

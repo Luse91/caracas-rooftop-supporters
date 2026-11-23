@@ -1,4 +1,5 @@
-# Rehace supporters.png cada vez que cambia panas.txt (por ejemplo desde editar.html).
+# Rehace las imágenes de la placa (panas.png, supporters.png, placa_fondo.png) cada vez que cambia
+# panas.txt (por ejemplo desde editar.html).
 name: Rehacer la placa
 on:
   push:
@@ -18,14 +19,16 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - run: pip install pillow
+      - run: pip install pillow fonttools
+      - name: Fuente japonesa de respaldo (Noto Sans JP, OFL)
+        run: curl -sfL -o NotoSansJP.ttf "https://github.com/google/fonts/raw/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf"
       - run: python generar.py
       - name: Guardar la placa
         run: |
-          if git diff --quiet -- supporters.png; then echo "La placa no cambió"; exit 0; fi
+          if git diff --quiet -- panas.png supporters.png placa_fondo.png && [ -z "$(git status --porcelain -- panas.png placa_fondo.png)" ]; then echo "La placa no cambió"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add supporters.png
+          git add panas.png supporters.png placa_fondo.png
           git commit -m "Placa actualizada desde panas.txt"
           git pull --rebase origin main
           git push
