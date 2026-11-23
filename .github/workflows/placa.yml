@@ -1,0 +1,31 @@
+# Rehace supporters.png cada vez que cambia panas.txt (por ejemplo desde editar.html).
+name: Rehacer la placa
+on:
+  push:
+    branches: [main]
+    paths: [panas.txt, fondo.png, generar.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: placa
+  cancel-in-progress: false
+jobs:
+  placa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python generar.py
+      - name: Guardar la placa
+        run: |
+          if git diff --quiet -- supporters.png; then echo "La placa no cambió"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add supporters.png
+          git commit -m "Placa actualizada desde panas.txt"
+          git pull --rebase origin main
+          git push

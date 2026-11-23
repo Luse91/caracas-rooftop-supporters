@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panas · Caracas Rooftop</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312100e'/%3E%3Ccircle cx='32' cy='38' r='11' fill='none' stroke='%23e9c08f' stroke-width='3'/%3E%3Cpath d='M6 46 L22 36 L32 41 L44 32 L58 46 Z' fill='%2312100e' stroke='%23e9c08f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  @font-face { font-family: "Marcellus"; src: url("Marcellus-Regular.ttf") format("truetype"); font-display: swap; }
+  :root {
+    --fondo: #0c0b0a; --panel: #161411; --panel2: #1d1a16; --linea: #33291f;
+    --oro: #ebc290; --oro2: #c8915e; --texto: #f0e8dd; --suave: #a39482;
+    --rojo: #e07a6a; --verde: #8fcf9a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--texto);
+    background: radial-gradient(ellipse at 50% -10%, #2a1f14 0%, var(--fondo) 55%);
+    font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif;
+  }
+  header { text-align: center; padding: 44px 20px 8px; }
+  header h1 {
+    margin: 0; font: 400 40px/1.1 "Marcellus", Georgia, serif; letter-spacing: .32em;
+    padding-left: .32em; color: var(--oro);
+    text-shadow: 0 0 18px rgba(235, 165, 95, .35);
+  }
+  header p { margin: 10px 0 0; color: var(--suave); letter-spacing: .04em; }
+  main {
+    max-width: 1000px; margin: 0 auto; padding: 28px 20px 64px;
+    display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; align-items: start;
+  }
+  @media (max-width: 780px) { main { grid-template-columns: 1fr; } }
+  .tarjeta {
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--linea); border-radius: 14px; padding: 24px;
+  }
+  .tarjeta + .tarjeta { margin-top: 20px; }
+  h2 { margin: 0 0 14px; font: 400 20px/1.3 "Marcellus", Georgia, serif; letter-spacing: .08em; color: var(--oro); }
+  ol.pasos { margin: 0 0 18px; padding-left: 22px; }
+  ol.pasos li { margin-bottom: 8px; }
+  a { color: var(--oro); }
+  code { background: #0006; padding: 1px 6px; border-radius: 5px; font-size: .92em; white-space: nowrap; }
+  input[type=text], input[type=password] {
+    width: 100%; padding: 12px 14px; font: inherit; color: var(--texto);
+    background: #0b0a09; border: 1px solid var(--linea); border-radius: 10px; outline: none;
+  }
+  input:focus { border-color: var(--oro2); box-shadow: 0 0 0 3px rgba(235, 194, 144, .15); }
+  button {
+    font: inherit; cursor: pointer; border-radius: 10px; padding: 11px 18px;
+    border: 1px solid var(--linea); background: #25201a; color: var(--texto);
+  }
+  button:hover:not(:disabled) { border-color: var(--oro2); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.principal {
+    background: linear-gradient(180deg, #f1cf9f, #c8915e); color: #1a120a; border: none; font-weight: 600;
+  }
+  .fila { display: flex; gap: 10px; }
+  .fila input { flex: 1; }
+  .aviso { min-height: 1.5em; margin: 10px 0 0; color: var(--suave); }
+  .aviso.error { color: var(--rojo); }
+  .aviso.bien { color: var(--verde); }
+  #lista { list-style: none; margin: 18px 0 0; padding: 0; }
+  #lista li {
+    display: flex; align-items: center; gap: 12px; padding: 10px 6px 10px 12px;
+    border-bottom: 1px solid var(--linea);
+  }
+  #lista li:last-child { border-bottom: none; }
+  #lista .num { width: 26px; color: var(--suave); font-variant-numeric: tabular-nums; text-align: right; }
+  #lista .nombre { flex: 1; font: 400 21px/1.3 "Marcellus", Georgia, serif; color: var(--oro); overflow-wrap: anywhere; }
+  #lista .nuevo .nombre::after { content: "nuevo"; margin-left: 10px; font: 600 11px/1 system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #1a120a; background: var(--oro); padding: 3px 7px; border-radius: 20px; vertical-align: middle; }
+  #lista button { padding: 6px 10px; min-width: 38px; background: transparent; }
+  #lista button.quitar:hover { border-color: var(--rojo); color: var(--rojo); }
+  .vacio { color: var(--suave); padding: 16px 0 4px; }
+  .pie { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--linea); }
+  .pie .espacio { flex: 1; }
+  #pendiente { color: var(--oro); }
+  aside .marco { border: 1px solid #6b5236; border-radius: 6px; padding: 6px; background: #000; }
+  aside img { display: block; width: 100%; aspect-ratio: 1152 / 2048; object-fit: cover; border-radius: 3px; background: #0d0c0b; }
+  aside p { color: var(--suave); font-size: 14px; margin: 12px 2px 0; }
+  .discreto { background: none; border: none; color: var(--suave); padding: 0; text-decoration: underline; font-size: 14px; }
+  .discreto:hover { color: var(--texto); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>PANAS</h1>
+  <p>Placa del lobby · Caracas Rooftop</p>
+</header>
+
+<main>
+  <section>
+    <!-- Conectar (solo la primera vez en cada navegador) -->
+    <div class="tarjeta" id="conectar" hidden>
+      <h2>Conectar este navegador</h2>
+      <p>Solo se hace una vez. La página necesita un permiso de GitHub para poder guardar la lista.</p>
+      <ol class="pasos">
+        <li>Abre <a id="enlacePermiso" target="_blank" rel="noopener">este enlace de GitHub</a> (ya viene rellenado).</li>
+        <li>En <b>Repository access</b> elige <b>Only select repositories</b> y marca <code>caracas-rooftop-supporters</code>.</li>
+        <li>Baja hasta el final, pulsa <b>Generate token</b> y copia el código que empieza por <code>github_pat_</code>.</li>
+        <li>Pégalo aquí:</li>
+      </ol>
+      <div class="fila">
+        <input type="password" id="token" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+        <button class="principal" id="btnConectar">Conectar</button>
+      </div>
+      <p class="aviso" id="avisoConectar">El permiso se guarda solo en este navegador.</p>
+    </div>
+
+    <!-- Lista -->
+    <div class="tarjeta" id="editor" hidden>
+      <h2>Añadir un pana</h2>
+      <div class="fila">
+        <input type="text" id="nuevo" placeholder="Nombre en VRChat" maxlength="40" autocomplete="off" spellcheck="false">
+        <button id="btnAnadir">Añadir</button>
+      </div>
+      <p class="aviso" id="avisoAnadir"></p>
+
+      <ol id="lista"></ol>
+      <p class="vacio" id="vacio" hidden>Todavía no hay panas en la lista.</p>
+
+      <div class="pie">
+        <span id="cuenta"></span>
+        <span id="pendiente" hidden>· cambios sin guardar</span>
+        <span class="espacio"></span>
+        <button id="btnDeshacer" disabled>Deshacer</button>
+        <button class="principal" id="btnGuardar" disabled>Guardar en el mundo</button>
+      </div>
+      <p class="aviso" id="avisoGuardar"></p>
+    </div>
+  </section>
+
+  <aside>
+    <div class="marco"><img id="vista" alt="Placa de supporters del lobby"></div>
+    <p id="estadoPlaca">Así se ve la placa ahora.</p>
+    <p><button class="discreto" id="btnDesconectar" hidden>Desconectar este navegador</button></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const DUENO = "Luse91", REPO = "caracas-rooftop-supporters", RAMA = "main", ARCHIVO = "panas.txt";
+  const API = `https://api.github.com/repos/${DUENO}/${REPO}`;
+  const CLAVE = "cr_panas_token";
+  const $ = (id) => document.getElementById(id);
+
+  $("enlacePermiso").href = "https://github.com/settings/personal-access-tokens/new?" + new URLSearchParams({
+    name: "Placa Panas Caracas Rooftop",
+    description: "Editar panas.txt desde la pagina de la placa (editar.html)",
+    expires_in: "none",
+    contents: "write",
+  });
+
+  let token = localStorage.getItem(CLAVE) || "";
+  let cabecera = [];      // líneas de comentario (#) del principio de panas.txt
+  let guardados = [];     // lista tal como está en GitHub
+  let nombres = [];       // lista que se está editando
+  let sha = null;         // sha de panas.txt (para no pisar cambios)
+  let shaPlaca = null;    // último commit que tocó supporters.png
+  let urlVista = null;
+
+  // ---------- GitHub ----------
+  async function gh(ruta, opciones = {}) {
+    const r = await fetch(API + ruta, {
+      ...opciones,
+      cache: "no-store",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Accept": opciones.accept || "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        ...(opciones.body ? { "Content-Type": "application/json" } : {}),
+      },
+    });
+    if (!r.ok) {
+      const e = new Error("GitHub " + r.status);
+      e.status = r.status;
+      throw e;
+    }
+    return r;
+  }
+  const desdeBase64 = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, "")), (c) => c.charCodeAt(0)));
+  function aBase64(texto) {
+    const bytes = new TextEncoder().encode(texto);
+    let s = "";
+    for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    return btoa(s);
+  }
+
+  async function cargarLista() {
+    const datos = await (await gh(`/contents/${ARCHIVO}?ref=${RAMA}`)).json();
+    sha = datos.sha;
+    const lineas = desdeBase64(datos.content).split(/\r?\n/).map((l) => l.trim());
+    cabecera = [];
+    guardados = [];
+    for (const l of lineas) {
+      if (!l) continue;
+      if (l.startsWith("#")) { if (!guardados.length) cabecera.push(l); continue; }
+      guardados.push(l);
+    }
+    nombres = guardados.slice();
+    pintar();
+  }
+
+  async function ultimoCommitPlaca() {
+    const c = await (await gh(`/commits?path=supporters.png&sha=${RAMA}&per_page=1`)).json();
+    return c.length ? c[0].sha : null;
+  }
+
+  async function mostrarPlaca(ref) {
+    try {
+      const r = await gh(`/contents/supporters.png?ref=${ref || RAMA}`, { accept: "application/vnd.github.raw" });
+      const blob = await r.blob();
+      if (urlVista) URL.revokeObjectURL(urlVista);
+      urlVista = URL.createObjectURL(blob);
+      $("vista").src = urlVista;
+    } catch {
+      $("vista").src = "supporters.png?v=" + Date.now();
+    }
+  }
+
+  // ---------- Pantalla ----------
+  const igual = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+  const hayCambios = () => !igual(nombres, guardados);
+
+  function pintar() {
+    const ol = $("lista");
+    ol.textContent = "";
+    nombres.forEach((n, i) => {
+      const li = document.createElement("li");
+      if (!guardados.includes(n)) li.className = "nuevo";
+      const num = document.createElement("span"); num.className = "num"; num.textContent = i + 1;
+      const nom = document.createElement("span"); nom.className = "nombre"; nom.textContent = n;
+      const sube = boton("↑", "Subir", i === 0, () => mover(i, -1));
+      const baja = boton("↓", "Bajar", i === nombres.length - 1, () => mover(i, 1));
+      const quita = boton("✕", "Quitar de la lista", false, () => { nombres.splice(i, 1); pintar(); });
+      quita.classList.add("quitar");
+      li.append(num, nom, sube, baja, quita);
+      ol.append(li);
+    });
+    $("vacio").hidden = nombres.length > 0;
+    $("cuenta").textContent = nombres.length === 1 ? "1 pana" : `${nombres.length} panas`;
+    const cambios = hayCambios();
+    $("pendiente").hidden = !cambios;
+    $("btnGuardar").disabled = !cambios;
+    $("btnDeshacer").disabled = !cambios;
+  }
+  function boton(texto, titulo, desactivado, accion) {
+    const b = document.createElement("button");
+    b.textContent = texto; b.title = titulo; b.setAttribute("aria-label", titulo);
+    b.disabled = desactivado; b.onclick = accion;
+    return b;
+  }
+  function mover(i, d) {
+    [nombres[i], nombres[i + d]] = [nombres[i + d], nombres[i]];
+    pintar();
+  }
+  function aviso(id, texto, tipo = "") {
+    const p = $(id); p.textContent = texto; p.className = "aviso" + (tipo ? " " + tipo : "");
+  }
+
+  function anadir() {
+    const n = $("nuevo").value.replace(/\s+/g, " ").trim();
+    if (!n) return;
+    if (n.startsWith("#")) return aviso("avisoAnadir", "El nombre no puede empezar por #.", "error");
+    const ya = nombres.find((x) => x.toLowerCase() === n.toLowerCase());
+    if (ya) return aviso("avisoAnadir", `${ya} ya está en la lista.`, "error");
+    nombres.push(n);
+    $("nuevo").value = "";
+    aviso("avisoAnadir", `${n} añadido. Pulsa «Guardar en el mundo» cuando termines.`);
+    pintar();
+    $("nuevo").focus();
+  }
+
+  function mensajeCommit() {
+    const mas = nombres.filter((n) => !guardados.includes(n));
+    const menos = guardados.filter((n) => !nombres.includes(n));
+    const partes = [];
+    if (mas.length) partes.push("+ " + mas.join(", "));
+    if (menos.length) partes.push("- " + menos.join(", "));
+    if (!partes.length) partes.push("nuevo orden");
+    return "Panas: " + partes.join(" / ");
+  }
+
+  async function guardar() {
+    $("btnGuardar").disabled = true;
+    aviso("avisoGuardar", "Guardando…");
+    aviso("avisoAnadir", "");
+    try {
+      const antes = shaPlaca;
+      const texto = [...cabecera, ...nombres].join("\n") + "\n";
+      const r = await (await gh(`/contents/${ARCHIVO}`, {
+        method: "PUT",
+        body: JSON.stringify({ message: mensajeCommit(), content: aBase64(texto), sha, branch: RAMA }),
+      })).json();
+      sha = r.content.sha;
+      guardados = nombres.slice();
+      pintar();
+      aviso("avisoGuardar", "Guardado ✓", "bien");
+      esperarPlaca(antes);
+    } catch (e) {
+      if (e.status === 409 || e.status === 422) {
+        aviso("avisoGuardar", "La lista cambió en GitHub mientras editabas. La recargué: revisa y vuelve a guardar.", "error");
+        await cargarLista();
+      } else if (e.status === 401 || e.status === 403) {
+        aviso("avisoGuardar", "GitHub no aceptó el permiso (¿caducó o le falta «Contents: Read and write»?). Desconecta y conéctalo de nuevo.", "error");
+      } else {
+        aviso("avisoGuardar", "No se pudo guardar (" + e.message + "). Prueba otra vez.", "error");
+      }
+      pintar();
+    }
+  }
+
+  async function esperarPlaca(antes) {
+    $("estadoPlaca").textContent = "Rehaciendo la placa… (1–2 minutos)";
+    const limite = Date.now() + 5 * 60 * 1000;
+    while (Date.now() < limite) {
+      await new Promise((r) => setTimeout(r, 10000));
+      try {
+        const s = await ultimoCommitPlaca();
+        if (s && s !== antes) {
+          shaPlaca = s;
+          await mostrarPlaca(s);
+          $("estadoPlaca").textContent = "Placa lista ✓ En el mundo se ve al entrar (puede tardar unos minutos más).";
+          return;
+        }
+      } catch { /* reintenta */ }
+    }
+    $("estadoPlaca").textContent = "La lista se guardó, pero la placa no cambió todavía. Recarga esta página en un rato.";
+  }
+
+  async function iniciar() {
+    if (!token) {
+      $("conectar").hidden = false; $("editor").hidden = true; $("btnDesconectar").hidden = true;
+      $("vista").src = "supporters.png?v=" + Date.now();
+      return;
+    }
+    try {
+      await cargarLista();
+      $("conectar").hidden = true; $("editor").hidden = false; $("btnDesconectar").hidden = false;
+      shaPlaca = await ultimoCommitPlaca().catch(() => null);
+      mostrarPlaca(shaPlaca);
+    } catch (e) {
+      localStorage.removeItem(CLAVE);
+      token = "";
+      $("conectar").hidden = false; $("editor").hidden = true;
+      aviso("avisoConectar", e.status === 404 || e.status === 403 || e.status === 401
+        ? "Ese permiso no sirve: revisa que tenga marcado caracas-rooftop-supporters y «Contents: Read and write»."
+        : "No pude hablar con GitHub (" + e.message + ").", "error");
+    }
+  }
+
+  // ---------- Eventos ----------
+  $("btnConectar").onclick = () => {
+    const t = $("token").value.trim();
+    if (!t) return;
+    token = t;
+    localStorage.setItem(CLAVE, t);
+    $("token").value = "";
+    aviso("avisoConectar", "Comprobando…");
+    iniciar();
+  };
+  $("token").addEventListener("keydown", (e) => { if (e.key === "Enter") $("btnConectar").click(); });
+  $("btnAnadir").onclick = anadir;
+  $("nuevo").addEventListener("keydown", (e) => { if (e.key === "Enter") anadir(); });
+  $("btnGuardar").onclick = guardar;
+  $("btnDeshacer").onclick = () => { nombres = guardados.slice(); aviso("avisoAnadir", ""); pintar(); };
+  $("btnDesconectar").onclick = () => {
+    if (hayCambios() && !confirm("Hay cambios sin guardar. ¿Desconectar igual?")) return;
+    localStorage.removeItem(CLAVE); token = ""; location.reload();
+  };
+  window.addEventListener("beforeunload", (e) => { if (hayCambios()) { e.preventDefault(); e.returnValue = ""; } });
+
+  iniciar();
+})();
+</script>
+</body>
+</html>
