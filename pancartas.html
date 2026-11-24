@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pancartas del Farmatodo · Caracas Rooftop</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312100e'/%3E%3Crect x='19' y='10' width='26' height='40' rx='2' fill='none' stroke='%23e9c08f' stroke-width='3'/%3E%3Cpath d='M19 18 H45' stroke='%23e9c08f' stroke-width='3'/%3E%3Cpath d='M12 56 H52' stroke='%23e9c08f' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  @font-face { font-family: "Marcellus"; src: url("Marcellus-Regular.ttf") format("truetype"); font-display: swap; }
+  :root {
+    --fondo: #0c0b0a; --panel: #161411; --panel2: #1d1a16; --linea: #33291f;
+    --oro: #ebc290; --oro2: #c8915e; --texto: #f0e8dd; --suave: #a39482;
+    --rojo: #e07a6a; --verde: #8fcf9a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--texto);
+    background: radial-gradient(ellipse at 50% -10%, #2a1f14 0%, var(--fondo) 55%);
+    font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif;
+  }
+  header { text-align: center; padding: 44px 20px 8px; }
+  header h1 {
+    margin: 0; font: 400 40px/1.1 "Marcellus", Georgia, serif; letter-spacing: .32em;
+    padding-left: .32em; color: var(--oro);
+    text-shadow: 0 0 18px rgba(235, 165, 95, .35);
+  }
+  header p { margin: 10px 0 0; color: var(--suave); letter-spacing: .04em; }
+  main { max-width: 1000px; margin: 0 auto; padding: 28px 20px 64px; }
+  .tarjeta {
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--linea); border-radius: 14px; padding: 24px;
+  }
+  .tarjeta + .tarjeta { margin-top: 20px; }
+  h2 { margin: 0 0 14px; font: 400 20px/1.3 "Marcellus", Georgia, serif; letter-spacing: .08em; color: var(--oro); }
+  ol.pasos { margin: 0 0 18px; padding-left: 22px; }
+  ol.pasos li { margin-bottom: 8px; }
+  a { color: var(--oro); }
+  code { background: #0006; padding: 1px 6px; border-radius: 5px; font-size: .92em; white-space: nowrap; }
+  input[type=password] {
+    width: 100%; padding: 12px 14px; font: inherit; color: var(--texto);
+    background: #0b0a09; border: 1px solid var(--linea); border-radius: 10px; outline: none;
+  }
+  input:focus { border-color: var(--oro2); box-shadow: 0 0 0 3px rgba(235, 194, 144, .15); }
+  button {
+    font: inherit; cursor: pointer; border-radius: 10px; padding: 11px 18px;
+    border: 1px solid var(--linea); background: #25201a; color: var(--texto);
+  }
+  button:hover:not(:disabled) { border-color: var(--oro2); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.principal { background: linear-gradient(180deg, #f1cf9f, #c8915e); color: #1a120a; border: none; font-weight: 600; }
+  button.peligro:hover:not(:disabled) { border-color: var(--rojo); color: var(--rojo); }
+  .fila { display: flex; gap: 10px; flex-wrap: wrap; }
+  .fila input { flex: 1; min-width: 200px; }
+  .aviso { min-height: 1.5em; margin: 10px 0 0; color: var(--suave); }
+  .aviso.error { color: var(--rojo); }
+  .aviso.bien { color: var(--verde); }
+  .nota { color: var(--suave); font-size: 14px; margin: 8px 0 0; }
+  .discreto { background: none; border: none; color: var(--suave); padding: 0; text-decoration: underline; font-size: 14px; }
+  .discreto:hover { color: var(--texto); }
+  [hidden] { display: none !important; }
+
+  /* mapa + lista */
+  .resumen { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; align-items: start; }
+  @media (max-width: 760px) { .resumen { grid-template-columns: 1fr; } .mapa { max-width: 300px; margin: 0 auto; } }
+  .mapa svg { width: 100%; height: auto; display: block; }
+  .mapa .rotulo { fill: var(--suave); font: 11px system-ui, "Segoe UI", sans-serif; text-anchor: middle; letter-spacing: .04em; }
+  .mapa .hueco { cursor: pointer; }
+  .mapa .hueco circle { fill: #25201a; stroke: var(--oro2); stroke-width: 1.5; }
+  .mapa .hueco text { fill: var(--oro); font: 600 12px system-ui, sans-serif; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .mapa .hueco.activo circle { fill: var(--oro); }
+  .mapa .hueco.activo text { fill: #1a120a; }
+  .mapa .hueco:hover circle { stroke: var(--texto); }
+  #rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 460px) { #rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .ficha {
+    display: block; width: 100%; padding: 8px; text-align: left; border-radius: 12px;
+    background: #0f0d0b; border: 1px solid var(--linea);
+  }
+  .ficha.activo { border-color: var(--oro); box-shadow: 0 0 0 3px rgba(235, 194, 144, .15); }
+  .ficha img { display: block; width: 100%; aspect-ratio: 480 / 696; object-fit: cover; border-radius: 6px; background: #1a1714; }
+  .ficha .titulo { display: block; margin-top: 8px; font-size: 14px; line-height: 1.3; }
+  .ficha .estado { display: block; font-size: 12px; color: var(--suave); margin-top: 2px; }
+  .ficha .estado.tuya { color: var(--verde); }
+
+  /* editor */
+  .editor { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 28px; align-items: start; }
+  @media (max-width: 760px) { .editor { grid-template-columns: 1fr; } .lienzo { max-width: 320px; margin: 0 auto; } }
+  .lienzo { position: relative; border: 1px solid #6b5236; border-radius: 6px; padding: 6px; background: #000; }
+  .lienzo canvas {
+    display: block; width: 100%; aspect-ratio: 480 / 696; border-radius: 3px;
+    touch-action: none; cursor: grab; background: #fff;
+  }
+  .lienzo canvas.arrastrando { cursor: grabbing; }
+  .lienzo .soltar {
+    position: absolute; inset: 6px; display: flex; align-items: center; justify-content: center; text-align: center;
+    border: 2px dashed var(--oro); border-radius: 3px; background: rgba(12, 11, 10, .82); color: var(--oro);
+    font-weight: 600; padding: 20px; pointer-events: none;
+  }
+  .controles label { display: block; margin: 18px 0 6px; color: var(--suave); font-size: 14px; }
+  .controles input[type=range] { width: 100%; accent-color: var(--oro2); }
+  .controles input[type=color] { width: 52px; height: 36px; padding: 2px; border: 1px solid var(--linea); border-radius: 8px; background: #0b0a09; vertical-align: middle; }
+  .pie { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--linea); }
+  .pie .espacio { flex: 1; }
+</style>
+</head>
+<body>
+<header>
+  <h1>PANCARTAS</h1>
+  <p>Vidriera del Farmatodo · Caracas Rooftop</p>
+</header>
+
+<main>
+  <!-- Conectar (solo la primera vez en cada navegador; es el mismo permiso de editar.html) -->
+  <div class="tarjeta" id="conectar" hidden>
+    <h2>Conectar este navegador</h2>
+    <p>Solo se hace una vez (si ya lo conectaste para los Panas, sirve el mismo). La página necesita un permiso de GitHub para poder guardar las pancartas.</p>
+    <ol class="pasos">
+      <li>Abre <a id="enlacePermiso" target="_blank" rel="noopener">este enlace de GitHub</a> (ya viene rellenado).</li>
+      <li>En <b>Repository access</b> elige <b>Only select repositories</b> y marca <code>caracas-rooftop-supporters</code>.</li>
+      <li>Baja hasta el final, pulsa <b>Generate token</b> y copia el código que empieza por <code>github_pat_</code>.</li>
+      <li>Pégalo aquí:</li>
+    </ol>
+    <div class="fila">
+      <input type="password" id="token" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+      <button class="principal" id="btnConectar">Conectar</button>
+    </div>
+    <p class="aviso" id="avisoConectar">El permiso se guarda solo en este navegador.</p>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Las 6 pancartas</h2>
+    <div class="resumen">
+      <div class="mapa" aria-label="Plano del Farmatodo visto desde arriba">
+        <svg viewBox="0 0 300 290" role="img">
+          <!-- aceras del frente y del lado izquierdo (desde ahí se ven las pancartas) -->
+          <rect x="0" y="240" width="300" height="50" fill="#1d1a16"/>
+          <rect x="0" y="12" width="26" height="228" fill="#1d1a16"/>
+          <text x="162" y="270" class="rotulo">acera (calle)</text>
+          <text x="13" y="126" class="rotulo" transform="rotate(-90 13 126)">lado izquierdo</text>
+          <!-- la tienda vista desde arriba, con la calle abajo -->
+          <rect x="40" y="20" width="245" height="202" rx="3" fill="#0f0d0b" stroke="#6b5236" stroke-width="2"/>
+          <text x="162" y="40" class="rotulo">fondo</text>
+          <rect x="142" y="50" width="41" height="6" rx="2" fill="#6b5236"/>
+          <text x="162" y="74" class="rotulo">FARMACIA</text>
+          <rect x="141" y="216" width="43" height="12" fill="#1d1a16"/>
+          <text x="162" y="206" class="rotulo">puerta</text>
+          <!-- pancartas: frente 1-3 (de izq. a der. desde la acera), lado 4-6 (de adelante al fondo) -->
+          <g id="huecos"></g>
+        </svg>
+      </div>
+      <div id="rejilla"></div>
+    </div>
+    <p class="nota">Toca una pancarta para cambiarla. Las del <b>frente</b> se ven desde la acera; las del <b>lado</b> desde la esquina. En el mundo cambian solas, unos minutos después de guardar: en las instancias nuevas al entrar y en las ya abiertas en menos de 30 minutos.</p>
+  </div>
+
+  <div class="tarjeta" id="editor" hidden>
+    <h2 id="tituloEditor">Pancarta</h2>
+    <div class="editor">
+      <div class="lienzo" id="zonaLienzo">
+        <canvas id="lienzo" width="480" height="696" aria-label="Vista de la pancarta"></canvas>
+        <div class="soltar" id="soltar" hidden>Suelta la imagen aquí</div>
+      </div>
+      <div class="controles">
+        <div class="fila">
+          <button class="principal" id="btnElegir">Elegir imagen…</button>
+          <input type="file" id="archivo" accept="image/*" hidden>
+        </div>
+        <p class="nota">También puedes arrastrarla al cuadro o pegarla con Ctrl+V. Lo que queda dentro del cuadro es lo que se ve en la vidriera (1 m × 1,45 m).</p>
+
+        <label for="zoom">Tamaño</label>
+        <input type="range" id="zoom" min="0" max="1000" value="500">
+        <p class="nota">Arrastra la imagen para moverla. Con la rueda del ratón (o dos dedos) también se acerca.</p>
+
+        <div class="fila" style="margin-top:14px">
+          <button id="btnLlenar" title="Que la imagen cubra todo el cuadro">Llenar</button>
+          <button id="btnEncajar" title="Que se vea la imagen entera (sobra fondo)">Que quepa entera</button>
+          <button id="btnGirar" title="Girar 90°">Girar ↻</button>
+        </div>
+
+        <label for="colorFondo">Color de fondo (donde no llega la imagen)</label>
+        <input type="color" id="colorFondo" value="#ffffff">
+
+        <div class="pie">
+          <button class="peligro" id="btnFabrica" title="Borra la tuya y vuelve la que trae el mundo">Volver a la de fábrica</button>
+          <span class="espacio"></span>
+          <button id="btnCerrar">Cerrar</button>
+          <button class="principal" id="btnGuardar" disabled>Guardar en el mundo</button>
+        </div>
+        <p class="aviso" id="avisoGuardar"></p>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;margin-top:20px"><button class="discreto" id="btnDesconectar" hidden>Desconectar este navegador</button></p>
+</main>
+
+<script>
+(() => {
+  const DUENO = "Luse91", REPO = "caracas-rooftop-supporters";
+  const RAMA = new URLSearchParams(location.search).get("rama") || "main";   // ?rama=… solo para pruebas
+  const API = `https://api.github.com/repos/${DUENO}/${REPO}`;
+  const CLAVE = "cr_panas_token";               // el mismo permiso que editar.html
+  const CARPETA = "farmatodo";
+  const W = 480, H = 696;                       // 1,00 m × 1,45 m en la vidriera
+  const $ = (id) => document.getElementById(id);
+
+  const PANCARTAS = [
+    { n: 1, nombre: "Frente · a la izquierda de la puerta", x: 74, y: 222 },
+    { n: 2, nombre: "Frente · a la derecha de la puerta", x: 232, y: 222 },
+    { n: 3, nombre: "Frente · en la esquina derecha", x: 270, y: 222 },
+    { n: 4, nombre: "Lado izquierdo · adelante", x: 40, y: 191 },
+    { n: 5, nombre: "Lado izquierdo · en el medio", x: 40, y: 97 },
+    { n: 6, nombre: "Lado izquierdo · al fondo", x: 40, y: 50 },
+  ];
+  const ruta = (n) => `${CARPETA}/pancarta_${n}.png`;
+  const fabrica = (n) => `${CARPETA}/fabrica/pancarta_${n}.png`;
+
+  $("enlacePermiso").href = "https://github.com/settings/personal-access-tokens/new?" + new URLSearchParams({
+    name: "Placa Panas Caracas Rooftop",
+    description: "Editar la placa de Panas y las pancartas del Farmatodo (editar.html, pancartas.html)",
+    expires_in: "none",
+    contents: "write",
+  });
+
+  let token = localStorage.getItem(CLAVE) || "";
+  let conectado = false;
+  const shas = {};        // n → sha de farmatodo/pancarta_n.png en GitHub
+  const shasFabrica = {}; // n → sha de la de fábrica (si son iguales, la pancarta está "de fábrica")
+  const vistas = {};      // n → url de la miniatura
+  let actual = 0;         // pancarta abierta en el editor
+  let img = null, iw = 0, ih = 0;   // imagen fuente
+  let giro = 0, esc = 1, cx = W / 2, cy = H / 2;
+  let sucio = false;
+
+  // ---------- GitHub ----------
+  async function gh(r, opciones = {}) {
+    const resp = await fetch(API + r, {
+      ...opciones,
+      cache: "no-store",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Accept": opciones.accept || "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        ...(opciones.body ? { "Content-Type": "application/json" } : {}),
+      },
+    });
+    if (!resp.ok) { const e = new Error("GitHub " + resp.status); e.status = resp.status; throw e; }
+    return resp;
+  }
+  function bytesABase64(bytes) {
+    let s = "";
+    for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    return btoa(s);
+  }
+
+  async function leerCarpeta() {
+    const leer = async (carpeta, destino) => {
+      for (const k of Object.keys(destino)) delete destino[k];
+      try {
+        const lista = await (await gh(`/contents/${carpeta}?ref=${encodeURIComponent(RAMA)}`)).json();
+        for (const f of lista) {
+          const m = /^pancarta_([1-6])\.png$/.exec(f.name);
+          if (m && f.type === "file") destino[+m[1]] = f.sha;
+        }
+      } catch (e) { if (e.status !== 404) throw e; }
+    };
+    await leer(CARPETA, shas);
+    await leer(`${CARPETA}/fabrica`, shasFabrica);
+  }
+  const esTuya = (n) => !!shas[n] && shas[n] !== shasFabrica[n];
+
+  async function miniatura(n) {
+    if (vistas[n] && vistas[n].startsWith("blob:")) URL.revokeObjectURL(vistas[n]);
+    if (esTuya(n)) {
+      try {
+        const r = await gh(`/contents/${ruta(n)}?ref=${encodeURIComponent(RAMA)}`, { accept: "application/vnd.github.raw" });
+        vistas[n] = URL.createObjectURL(await r.blob());
+      } catch { vistas[n] = fabrica(n); }
+    } else vistas[n] = fabrica(n);
+  }
+
+  // sin conectar: lo que está publicado (o la de fábrica)
+  function miniaturaPublica(n) {
+    return new Promise((ok) => {
+      const i = new Image();
+      i.onload = () => { vistas[n] = i.src; ok(true); };
+      i.onerror = () => { vistas[n] = fabrica(n); ok(false); };
+      i.src = ruta(n) + "?v=" + Date.now();
+    });
+  }
+
+  // ---------- lista ----------
+  function pintarLista() {
+    const g = $("huecos"); g.textContent = "";
+    const NS = "http://www.w3.org/2000/svg";
+    for (const p of PANCARTAS) {
+      const a = document.createElementNS(NS, "g");
+      a.setAttribute("class", "hueco" + (p.n === actual ? " activo" : ""));
+      a.setAttribute("role", "button"); a.setAttribute("tabindex", "0");
+      a.setAttribute("aria-label", `Pancarta ${p.n}: ${p.nombre}`);
+      const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); c.setAttribute("r", 11);
+      const t = document.createElementNS(NS, "text"); t.setAttribute("x", p.x); t.setAttribute("y", p.y + 1); t.textContent = p.n;
+      a.append(c, t);
+      a.addEventListener("click", () => abrir(p.n));
+      a.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(p.n); } });
+      g.append(a);
+    }
+    const rej = $("rejilla"); rej.textContent = "";
+    for (const p of PANCARTAS) {
+      const b = document.createElement("button");
+      b.className = "ficha" + (p.n === actual ? " activo" : "");
+      const im = document.createElement("img"); im.alt = `Pancarta ${p.n}`; if (vistas[p.n]) im.src = vistas[p.n];
+      const ti = document.createElement("span"); ti.className = "titulo"; ti.textContent = `${p.n} · ${p.nombre}`;
+      const es = document.createElement("span");
+      es.className = "estado";
+      if (conectado) {
+        const tuya = esTuya(p.n);
+        if (tuya) es.classList.add("tuya");
+        es.textContent = tuya ? "la tuya" : "de fábrica";
+      }
+      b.append(im, ti, es);
+      b.onclick = () => abrir(p.n);
+      rej.append(b);
+    }
+  }
+
+  // ---------- editor ----------
+  const lienzo = $("lienzo"), ctx = lienzo.getContext("2d");
+  const dims = () => (giro % 2 ? [ih, iw] : [iw, ih]);
+  const llenar = () => { const [a, b] = dims(); return Math.max(W / a, H / b); };
+  const encajar = () => { const [a, b] = dims(); return Math.min(W / a, H / b); };
+  const escMin = () => encajar() * 0.5, escMax = () => llenar() * 4;
+
+  function dibujar() {
+    ctx.fillStyle = $("colorFondo").value;
+    ctx.fillRect(0, 0, W, H);
+    if (!img) return;
+    ctx.save();
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+    ctx.translate(cx, cy); ctx.rotate(giro * Math.PI / 2); ctx.scale(esc, esc);
+    ctx.drawImage(img, -iw / 2, -ih / 2);
+    ctx.restore();
+  }
+  function ponerZoomSlider() {
+    const t = Math.log(esc / escMin()) / Math.log(escMax() / escMin());
+    $("zoom").value = Math.round(Math.min(1, Math.max(0, t)) * 1000);
+  }
+  function cambiar() { sucio = true; actualizarBotones(); dibujar(); }
+  function modo(e) { if (!img) return; esc = e; cx = W / 2; cy = H / 2; ponerZoomSlider(); cambiar(); }
+  function acercar(f, px, py) {
+    if (!img) return;
+    const nuevo = Math.min(escMax(), Math.max(escMin(), esc * f));
+    const k = nuevo / esc;
+    cx = px + (cx - px) * k; cy = py + (cy - py) * k; esc = nuevo;
+    ponerZoomSlider(); cambiar();
+  }
+
+  async function cargarFuente(origen) {
+    // origen: File/Blob o url
+    let fuente;
+    if (origen instanceof Blob) {
+      if (!origen.type.startsWith("image/")) throw new Error("Eso no es una imagen.");
+      try { fuente = await createImageBitmap(origen, { imageOrientation: "from-image" }); }
+      catch { fuente = await new Promise((ok, mal) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => mal(new Error("No pude abrir esa imagen.")); i.src = URL.createObjectURL(origen); }); }
+    } else {
+      fuente = await new Promise((ok, mal) => { const i = new Image(); i.crossOrigin = "anonymous"; i.onload = () => ok(i); i.onerror = () => mal(new Error("No pude abrir la imagen.")); i.src = origen; });
+    }
+    img = fuente; iw = fuente.width; ih = fuente.height; giro = 0;
+    esc = llenar(); cx = W / 2; cy = H / 2;
+    ponerZoomSlider(); dibujar();
+  }
+
+  async function abrir(n) {
+    if (n === actual && !$("editor").hidden) return;
+    if (sucio && !confirm("La pancarta que estabas editando tiene cambios sin guardar. ¿Dejarla así?")) return;
+    actual = n; sucio = false;
+    const p = PANCARTAS[n - 1];
+    $("tituloEditor").textContent = `Pancarta ${n} · ${p.nombre}`;
+    $("editor").hidden = false;
+    aviso("");
+    pintarLista();
+    img = null; dibujar();
+    try { await cargarFuente(vistas[n] || fabrica(n)); } catch { /* queda en blanco */ }
+    sucio = false; actualizarBotones();
+    $("editor").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  function cerrar() {
+    if (sucio && !confirm("Hay cambios sin guardar. ¿Cerrar igual?")) return;
+    sucio = false; actual = 0; $("editor").hidden = true; pintarLista();
+  }
+  function actualizarBotones() {
+    $("btnGuardar").disabled = !conectado || !img || !sucio;
+    $("btnFabrica").disabled = !conectado || !esTuya(actual);
+    if (!conectado) aviso("Conecta este navegador (arriba) para poder guardar.");
+  }
+  function aviso(texto, tipo = "") { const p = $("avisoGuardar"); p.textContent = texto; p.className = "aviso" + (tipo ? " " + tipo : ""); }
+
+  async function nuevaImagen(archivo) {
+    if (!archivo) return;
+    try { await cargarFuente(archivo); cambiar(); aviso("Muévela y ajústala; luego «Guardar en el mundo»."); }
+    catch (e) { aviso(e.message, "error"); }
+  }
+
+  async function guardar() {
+    const n = actual;
+    $("btnGuardar").disabled = true; aviso("Guardando…");
+    try {
+      dibujar();
+      const blob = await new Promise((ok) => lienzo.toBlob(ok, "image/png"));
+      const contenido = bytesABase64(new Uint8Array(await blob.arrayBuffer()));
+      const cuerpo = { message: `Pancarta ${n} del Farmatodo`, content: contenido, branch: RAMA };
+      if (shas[n]) cuerpo.sha = shas[n];
+      const r = await (await gh(`/contents/${ruta(n)}`, { method: "PUT", body: JSON.stringify(cuerpo) })).json();
+      shas[n] = r.content.sha;
+      if (vistas[n] && vistas[n].startsWith("blob:")) URL.revokeObjectURL(vistas[n]);
+      vistas[n] = URL.createObjectURL(blob);
+      sucio = false; pintarLista(); actualizarBotones();
+      aviso("Guardada ✓ GitHub la publica en 1–2 minutos; en el mundo sale al entrar a una instancia (en las abiertas, en menos de 30 min).", "bien");
+    } catch (e) { errorGitHub(e); }
+  }
+
+  async function aFabrica() {
+    const n = actual;
+    if (!esTuya(n) || !confirm(`¿Quitar tu pancarta ${n} y volver a la de fábrica?`)) return;
+    $("btnFabrica").disabled = true; aviso("Volviendo a la de fábrica…");
+    try {
+      // se copia la de fábrica encima (no se borra: así el mundo también la descarga en las instancias abiertas)
+      const f = await (await gh(`/contents/${fabrica(n)}?ref=${encodeURIComponent(RAMA)}`)).json();
+      const cuerpo = { message: `Pancarta ${n} del Farmatodo: de fábrica`, content: f.content.replace(/\s/g, ""), branch: RAMA };
+      if (shas[n]) cuerpo.sha = shas[n];
+      const r = await (await gh(`/contents/${ruta(n)}`, { method: "PUT", body: JSON.stringify(cuerpo) })).json();
+      shas[n] = r.content.sha;
+      if (vistas[n] && vistas[n].startsWith("blob:")) URL.revokeObjectURL(vistas[n]);
+      vistas[n] = fabrica(n);
+      sucio = false; pintarLista();
+      await cargarFuente(vistas[n]);
+      actualizarBotones();
+      aviso("Listo ✓ Vuelve la de fábrica (en el mundo, igual que al guardar).", "bien");
+    } catch (e) { errorGitHub(e); }
+  }
+
+  async function errorGitHub(e) {
+    if (e.status === 409 || e.status === 422) {
+      aviso("Esa pancarta cambió en GitHub mientras editabas (¿otra pestaña?). Recargué el estado: vuelve a guardar.", "error");
+      try { await leerCarpeta(); } catch { /* nada */ }
+    } else if (e.status === 401 || e.status === 403) {
+      aviso("GitHub no aceptó el permiso (¿caducó o le falta «Contents: Read and write»?). Desconecta y conéctalo de nuevo.", "error");
+    } else {
+      aviso("No se pudo (" + e.message + "). Prueba otra vez.", "error");
+    }
+    actualizarBotones();
+  }
+
+  // ---------- arrastrar, pellizcar, rueda ----------
+  const punteros = new Map();
+  let distAntes = 0;
+  const aLienzo = (e) => { const r = lienzo.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
+  lienzo.addEventListener("pointerdown", (e) => {
+    if (!img) return;
+    lienzo.setPointerCapture(e.pointerId); punteros.set(e.pointerId, aLienzo(e));
+    lienzo.classList.add("arrastrando");
+    if (punteros.size === 2) { const [a, b] = [...punteros.values()]; distAntes = Math.hypot(a[0] - b[0], a[1] - b[1]); }
+  });
+  lienzo.addEventListener("pointermove", (e) => {
+    if (!punteros.has(e.pointerId)) return;
+    const antes = punteros.get(e.pointerId), ahora = aLienzo(e);
+    punteros.set(e.pointerId, ahora);
+    if (punteros.size === 1) { cx += ahora[0] - antes[0]; cy += ahora[1] - antes[1]; cambiar(); }
+    else if (punteros.size === 2) {
+      const [a, b] = [...punteros.values()];
+      const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      if (distAntes > 0) acercar(d / distAntes, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+      distAntes = d;
+    }
+  });
+  const soltarPuntero = (e) => { punteros.delete(e.pointerId); if (!punteros.size) lienzo.classList.remove("arrastrando"); distAntes = 0; };
+  lienzo.addEventListener("pointerup", soltarPuntero);
+  lienzo.addEventListener("pointercancel", soltarPuntero);
+  lienzo.addEventListener("wheel", (e) => { if (!img) return; e.preventDefault(); const [x, y] = aLienzo(e); acercar(Math.exp(-e.deltaY * 0.0015), x, y); }, { passive: false });
+
+  const zona = $("zonaLienzo");
+  zona.addEventListener("dragover", (e) => { e.preventDefault(); $("soltar").hidden = false; });
+  zona.addEventListener("dragleave", () => { $("soltar").hidden = true; });
+  zona.addEventListener("drop", (e) => { e.preventDefault(); $("soltar").hidden = true; nuevaImagen(e.dataTransfer.files[0]); });
+  document.addEventListener("paste", (e) => {
+    if ($("editor").hidden) return;
+    const it = [...(e.clipboardData?.items || [])].find((i) => i.type.startsWith("image/"));
+    if (it) { e.preventDefault(); nuevaImagen(it.getAsFile()); }
+  });
+
+  // ---------- botones ----------
+  $("btnElegir").onclick = () => $("archivo").click();
+  $("archivo").onchange = () => { nuevaImagen($("archivo").files[0]); $("archivo").value = ""; };
+  $("zoom").oninput = () => {
+    if (!img) return;
+    const t = $("zoom").value / 1000, nuevo = escMin() * Math.pow(escMax() / escMin(), t);
+    acercar(nuevo / esc, W / 2, H / 2);
+  };
+  $("btnLlenar").onclick = () => modo(llenar());
+  $("btnEncajar").onclick = () => modo(encajar());
+  $("btnGirar").onclick = () => { if (!img) return; giro = (giro + 1) % 4; esc = Math.max(escMin(), Math.min(escMax(), esc)); ponerZoomSlider(); cambiar(); };
+  $("colorFondo").oninput = () => { if (img) cambiar(); };
+  $("btnGuardar").onclick = guardar;
+  $("btnFabrica").onclick = aFabrica;
+  $("btnCerrar").onclick = cerrar;
+  $("btnConectar").onclick = () => {
+    const t = $("token").value.trim();
+    if (!t) return;
+    token = t; localStorage.setItem(CLAVE, t); $("token").value = "";
+    $("avisoConectar").textContent = "Comprobando…";
+    iniciar();
+  };
+  $("token").addEventListener("keydown", (e) => { if (e.key === "Enter") $("btnConectar").click(); });
+  $("btnDesconectar").onclick = () => {
+    if (sucio && !confirm("Hay cambios sin guardar. ¿Desconectar igual?")) return;
+    localStorage.removeItem(CLAVE); token = ""; sucio = false; location.reload();
+  };
+  window.addEventListener("beforeunload", (e) => { if (sucio) { e.preventDefault(); e.returnValue = ""; } });
+
+  // ---------- inicio ----------
+  async function iniciar() {
+    conectado = false;
+    if (token) {
+      try {
+        await leerCarpeta();
+        await (await gh("")).json();          // el permiso ve el repo
+        conectado = true;
+      } catch (e) {
+        localStorage.removeItem(CLAVE); token = "";
+        const p = $("avisoConectar");
+        p.className = "aviso error";
+        p.textContent = e.status === 404 || e.status === 403 || e.status === 401
+          ? "Ese permiso no sirve: revisa que tenga marcado caracas-rooftop-supporters y «Contents: Read and write»."
+          : "No pude hablar con GitHub (" + e.message + ").";
+      }
+    }
+    $("conectar").hidden = conectado;
+    $("btnDesconectar").hidden = !conectado;
+    if (conectado) await Promise.all(PANCARTAS.map((p) => miniatura(p.n)));
+    else await Promise.all(PANCARTAS.map((p) => miniaturaPublica(p.n)));
+    pintarLista();
+    if (actual) actualizarBotones();
+  }
+  dibujar();
+  iniciar();
+})();
+</script>
+</body>
+</html>
