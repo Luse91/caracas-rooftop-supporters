@@ -2,4 +2,4 @@
 # 1 = se ve en su fecha   0 = oculta
 # El mundo lo lee al entrar y cada 10 minutos (no hace falta volver a subirlo).
 halloween=1
-navidad=0
+navidad=1
